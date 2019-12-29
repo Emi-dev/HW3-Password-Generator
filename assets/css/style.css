@@ -1,0 +1,48 @@
+* {
+    text-align: center;
+    margin: 0 auto;
+}
+
+body {
+    background-color: #dddddd;
+}
+
+header {  
+    padding: 10px;
+}
+
+main {
+    background-color: #ffffff;
+}
+
+#contentHeader {
+    border-bottom: 2px solid #dddddd;
+}
+
+h2 {
+    text-align: left;
+}
+
+#pwArea {
+    margin: 20px;
+    padding: 20px;
+    border: dashed 3px #c0c7cf;
+}
+
+#btnArea {
+    border-top: 2px solid #dddddd;
+}
+
+.btn {
+    margin: 20px;
+    border-radius: 50px;
+}
+
+#generateBtn {
+    background-color: #af0808;
+    color: white;
+}
+
+#copyBtn {
+    background-color: #c0c7cf;
+}
