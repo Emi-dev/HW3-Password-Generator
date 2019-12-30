@@ -8,20 +8,20 @@ var pwLength;
 var specialChars = " !\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
 var numericChars = "0123456789";
 var lowercaseChars = "abcdefghiklmnopqrstuvwxyz";
-var UppercaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXTZ";
+var uppercaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXTZ";
+
+// variable to contain if special characters are included in the password.
+var isSpecialChars;
+// variable to contain if numeric characters are included in the password.
+var isNumericChars;
+// variable to contain if lowercase characters are included in the password.
+var isLowercaseChars;
+// variable to contain if uppercase characters are included in the password.
+var isUppercaseChars;
 
 function generatePW() {
     // set/reset pw empty everytime the function is called (everytime "Generate Password" button is clicked).
     pw = "";
-    
-    // variable to contain if special characters are included in the password.
-    var isSpecialChars;
-    // variable to contain if numerical characters are included in the password.
-    var isNumericChars;
-    // variable to contain if lowercase characters are included in the password.
-    var isLowercaseChars;
-    // variable to contain if uppercase characters are included in the password.
-    var isUppercaseChars;
 
     // User prompts //
     // keep prompting until the user enter the appropriate password length.
@@ -29,7 +29,7 @@ function generatePW() {
         pwLength =  prompt("Enter the length of password (between 8 and 128).");
     } while (pwLength < 8 || pwLength > 128);
 
-    // keep prompting until the user choose at least one character type.
+    // keep prompting until the user chooses at least one character type.
     do {
         isSpecialChars = confirm("Would you like to include special characters in your password? \nPress \"OK\" for Yes, \"Cancel\" for No.");
         isNumericChars = confirm("Would you like to include numeric characters in your password? \nPress \"OK\" for Yes, \"Cancel\" for No.");
@@ -39,10 +39,11 @@ function generatePW() {
         // variable to contain if the user included at least one character type.
         var isValid = isSpecialChars || isNumericChars || isLowercaseChars || isUppercaseChars;
         if (!isValid) {
-            alert("!!!ERROR!!! \nYou must including at least one character type: \n\u2022 Special Characters \n\u2022 Numerical Characters \n\u2022 Lowercase Characters \n\u2022 Uppercase Characters")
+            alert("!!!ERROR!!! \nYou must including at least one character type: \n\u2022 Special Characters \n\u2022 Numeric Characters \n\u2022 Lowercase Characters \n\u2022 Uppercase Characters")
         }
     } while (!isValid);
 
+    // add all the specified types of characters into the "pw" string.
     if (isSpecialChars) {
         pw += specialChars;
     }
@@ -56,27 +57,88 @@ function generatePW() {
     }
 
     if (isUppercaseChars) {
-        pw += UppercaseChars;
+        pw += uppercaseChars;
     }
  
-    // shuffle and create password based on the specified criteria, and reassign pw with the returned value. 
-    pw = shuffle(pw, pwLength);
+    // reassign pw with the returned value of getRandomChars. 
+    pw = getRandomChars(pw, pwLength);
 
     // displaying the gerenated password on the page.
     document.getElementById("generatedPW").innerHTML = pw;
 }
 
-// shuffle the "password" and create the string(password) with the "length" given.
-function shuffle(password, length) {
-    var newPassword = [];
-    for (var i = 0; i < length; i++) {
-        var randIndex = Math.floor(Math.random() * password.length);
-
-        newPassword.push(password[randIndex]);
-    }
+// randomly pick the specified number(length) of characters from the characters in "password" and return the new password.
+function getRandomChars(password, length) {
+    do {
+        var newPassword = [];
+        for (let i = 0; i < length; i++) {
+            // get random index of the "password".
+            let randIndex = Math.floor(Math.random() * password.length);
+            newPassword.push(password[randIndex]);
+        }
+    } while (!pwChecker(newPassword));  // check if at least one of each specified character type is included.
 
     // get rid or "," between characters using join() method.
     return newPassword.join("");
+}
+
+// check if the password meets all the criteria (if at least one from each selected character type is included).
+function pwChecker(password) {
+    // declare variables to contain the checkpoints (initially set true);
+    var checkSpecial = true;
+    var checkNumeric = true;
+    var checkLowercase = true;
+    var checkUppercase = true;
+
+    if (isSpecialChars) {
+        // reassign checkSpecial to false.
+        checkSpecial = false;
+        for (let i = 0; i < pwLength; i++) {
+            if (specialChars.indexOf(password[i]) != -1) {
+                // if a special character is found in the password, reassign chekSpecial to true;
+                checkSpecial = true;
+                break;
+            }
+        }
+    }
+
+    if (isNumericChars) {
+        // reassign checkNumeric to false.
+        checkNumeric = false;
+        for (let i = 0; i < pwLength; i++) {
+            if (numericChars.indexOf(password[i]) != -1) {
+                // if a numeric character is found in the password, reassign chekNumeric to true;
+                checkNumeric = true;
+                break;
+            }
+        }
+    }
+
+    if (isLowercaseChars) {
+        // reassign checkLowercase to false.
+        checkLowercase = false;
+        for (let i = 0; i < pwLength; i++) {
+            if (lowercaseChars.indexOf(password[i]) != -1) {
+                // if a lowercase character is found in the password, reassign chekLowercase to true;
+                checkLowercase = true;
+                break;
+            }
+        }
+    }
+
+    if (isUppercaseChars) {
+        // reassign checkUppercase to false.
+        checkUppercase = false;
+        for (let i = 0; i < pwLength; i++) {
+            if (uppercaseChars.indexOf(password[i]) != -1) {
+                // if a Uppercase character is found in the password, reassign chekUppercase to true;
+                checkUppercase = true;
+                break;
+            }
+        }
+    }
+    // return if the password meets all the criteria.
+    return checkSpecial && checkNumeric && checkLowercase && checkUppercase;
 }
 
 function copyClipboard() {

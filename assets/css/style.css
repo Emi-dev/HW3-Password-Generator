@@ -19,14 +19,12 @@ main {
     border-bottom: 2px solid #dddddd;
 }
 
-h2 {
-    text-align: left;
+#pwArea {
+    border: dashed 3px #c0c7cf;
 }
 
-#pwArea {
-    margin: 20px;
-    padding: 20px;
-    border: dashed 3px #c0c7cf;
+#generatedPW {
+    font-size: 1.5em;
 }
 
 #btnArea {
@@ -45,4 +43,44 @@ h2 {
 
 #copyBtn {
     background-color: #c0c7cf;
+}
+
+/* extra small screen */
+@media screen and (max-width: 575px) {
+    /* adjust the width of the container (main contents) according to the screen size */
+    .container {
+        width: 90%;
+    }
+}
+
+/*  small screen */
+@media screen and (min-width: 576px) {
+    /* adjust the width of the container (main contents) according to the screen size */
+    .container {
+        width: 80%;
+    }
+}
+
+/* medium screen */
+@media screen and (min-width: 768px) {
+    /* adjust the width of the container (main contents) according to the screen size */
+    .container {
+        width: 70%;
+    }
+}
+
+/* large screen */
+@media screen and (min-width: 992px) {
+    /* adjust the width of the container (main contents) according to the screen size */
+    .container {
+        width: 75%;
+    }
+}
+
+/* extra large screen */
+@media screen and (min-width: 1200px) {
+    /* adjust the width of the container (main contents) according to the screen size */
+    .container {
+        width: 60%;
+    }
 }
