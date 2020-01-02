@@ -141,6 +141,8 @@ function pwChecker(password) {
     return checkSpecial && checkNumeric && checkLowercase && checkUppercase;
 }
 
+// copy the password displayed to the clipboard.
 function copyClipboard() {
-
+    var copyText = document.getElementById("generatedPW");
+    navigator.clipboard.writeText(copyText.innerText);
 }
