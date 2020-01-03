@@ -9,6 +9,7 @@
 ### General Info
 This is a password generator website.
 The user is prompted to specify the password length and character types to be included in the password when clicking on the "Generate Pasword" button.
+The user is able to copy the generated password to the clipboard when clicking on the "Copy to Clipboard" button.
 
 Types of characters:
 * [Special Characters](https://www.owasp.org/index.php/Password_special_characters)

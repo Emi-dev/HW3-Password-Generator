@@ -70,7 +70,7 @@ function generatePW() {
     pw = getRandomChars(pw, pwLength);
 
     // displaying the gerenated password on the page.
-    document.getElementById("generatedPW").innerHTML = pw;
+    document.getElementById("generatedPW").innerText = pw;
 }
 
 // randomly pick the specified number(length) of characters from the characters in "password" and return the new password.
@@ -100,7 +100,7 @@ function pwChecker(password) {
         // reassign checkSpecial to false.
         checkSpecial = false;
         for (let i = 0; i < pwLength; i++) {
-            if (specialChars.indexOf(password[i]) != -1) {
+            if (specialChars.indexOf(password[i]) !== -1) {
                 // if a special character is found in the password, reassign chekSpecial to true;
                 checkSpecial = true;
                 break;
@@ -112,7 +112,7 @@ function pwChecker(password) {
         // reassign checkNumeric to false.
         checkNumeric = false;
         for (let i = 0; i < pwLength; i++) {
-            if (numericChars.indexOf(password[i]) != -1) {
+            if (numericChars.indexOf(password[i]) !== -1) {
                 // if a numeric character is found in the password, reassign chekNumeric to true;
                 checkNumeric = true;
                 break;
@@ -124,7 +124,7 @@ function pwChecker(password) {
         // reassign checkLowercase to false.
         checkLowercase = false;
         for (let i = 0; i < pwLength; i++) {
-            if (lowercaseChars.indexOf(password[i]) != -1) {
+            if (lowercaseChars.indexOf(password[i]) !== -1) {
                 // if a lowercase character is found in the password, reassign chekLowercase to true;
                 checkLowercase = true;
                 break;
@@ -136,7 +136,7 @@ function pwChecker(password) {
         // reassign checkUppercase to false.
         checkUppercase = false;
         for (let i = 0; i < pwLength; i++) {
-            if (uppercaseChars.indexOf(password[i]) != -1) {
+            if (uppercaseChars.indexOf(password[i]) !== -1) {
                 // if a Uppercase character is found in the password, reassign chekUppercase to true;
                 checkUppercase = true;
                 break;
