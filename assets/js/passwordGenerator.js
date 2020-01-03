@@ -26,7 +26,13 @@ function generatePW() {
     // User prompts //
     // keep prompting until the user enter the appropriate password length.
     do {
-        pwLength =  prompt("Enter the length of password (between 8 and 128).");
+        // parse the string entered and assign the variable pwLength with the returned integer.
+        pwLength =  parseInt(prompt("Enter the length of password (between 8 and 128)."));
+        // check if the user entered numeric character(number). NaN should be returned when non numeric characters are given.
+        if (isNaN(pwLength)) {
+            alert("Please enter a number!");
+            pwLength = 0;
+        }
     } while (pwLength < 8 || pwLength > 128);
 
     // keep prompting until the user chooses at least one character type.
