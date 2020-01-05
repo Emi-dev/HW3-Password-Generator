@@ -13,7 +13,7 @@ The user is able to copy the generated password to the clipboard when clicking o
 
 Types of characters:
 * [Special Characters](https://www.owasp.org/index.php/Password_special_characters)
-* Numerical Characters
+* Numeric Characters
 * Lowercase Characters
 * Uppercase Characters
 

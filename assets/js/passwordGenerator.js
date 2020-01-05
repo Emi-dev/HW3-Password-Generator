@@ -75,17 +75,16 @@ function generatePW() {
 
 // randomly pick the specified number(length) of characters from the characters in "password" and return the new password.
 function getRandomChars(password, length) {
-    do {
-        var newPassword = [];
+   do {
+        var newPassword = "";
         for (let i = 0; i < length; i++) {
             // get random index of the "password".
             let randIndex = Math.floor(Math.random() * password.length);
-            newPassword.push(password[randIndex]);
+            newPassword += password[randIndex];
         }
     } while (!pwChecker(newPassword));  // check if at least one of each specified character type is included.
 
-    // get rid or "," between characters using join() method.
-    return newPassword.join("");
+    return newPassword;
 }
 
 // check if the password meets all the criteria (if at least one from each selected character type is included).
